@@ -12,7 +12,7 @@ echo '<pre>';
 
 
 $ob = new News();
-$ob->get();
+//$ob->get();
 
 echo '<br>';
 
@@ -23,4 +23,16 @@ $request = $ob1->response();
 
 
 //var_dump($ob->getAllNews());
-var_dump($request->getMethod());
+var_dump($request->selectMethod());
+
+
+/*
+$addNews = [
+  'title' => 'Новость add01',
+  'content' => 'Контент новости add01',
+];
+
+$json1 = json_encode($addNews);
+
+var_dump($json1);
+var_dump(json_decode($json1,true));*/

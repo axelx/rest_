@@ -7,6 +7,7 @@ class Rest
     public $methodQuery;
     public $route;
     public $dataQuery;
+    public $phpInput;
 
 
     /**
@@ -25,9 +26,18 @@ class Rest
 
     public function response(){
 
-//        var_dump($this->methodQuery);
+        var_dump($_POST);
+//        var_dump(file_get_contents('php://input'));
+
+        if ($this->methodQuery != 'GET'){
+//            var_dump("9898");
+            $this->phpInput = file_get_contents('php://input');
+
+        }
+
+//        var_dump($this->phpInput);
 //        var_dump($this->dataQuery);
-        return new $this->route($this->methodQuery,$this->dataQuery);
+        return new $this->route($this->methodQuery,$this->dataQuery,$this->phpInput);
     }
 
 
