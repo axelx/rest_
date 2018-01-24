@@ -4,7 +4,7 @@
 class Rest
 {
 
-    public $method;
+    public $methodQuery;
     public $route;
     public $dataQuery;
 
@@ -15,7 +15,21 @@ class Rest
     public function __construct()
     {
         $this->setMethod();
+
+        $this->parseQuery();
     }
+
+
+
+
+
+    public function response(){
+
+//        var_dump($this->methodQuery);
+//        var_dump($this->dataQuery);
+        return new $this->route($this->methodQuery,$this->dataQuery);
+    }
+
 
 
     /**
@@ -23,7 +37,7 @@ class Rest
      */
     public function parseQuery()
     {
-        $query = $_SERVER["REQUEST_URI"];
+//        $query = $_SERVER["REQUEST_URI"];
 
 
 
@@ -45,12 +59,12 @@ class Rest
 
 
 
-
-        var_dump($this->method);
-        var_dump($this->route);
-        var_dump($this->dataQuery);
-
-
+//
+//        var_dump($this->methodQuery);
+//        var_dump($this->route);
+//        var_dump($this->dataQuery);
+//
+//var_dump('0000000000000000000');
 
 
 
@@ -71,7 +85,9 @@ class Rest
      */
     public function setMethod()
     {
-        $this->method = $_SERVER['REQUEST_METHOD'];
+
+
+        $this->methodQuery = $_SERVER['REQUEST_METHOD'];
     }
 
 }

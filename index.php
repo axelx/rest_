@@ -2,8 +2,8 @@
 require_once 'autoload.php';
 
 echo '<pre>';
-$t1 = $_REQUEST['rquest'];
-$t2 = $_SERVER["REQUEST_URI"];
+//$t1 = $_REQUEST['rquest'];
+//$t2 = $_SERVER["REQUEST_URI"];
 
 
 //var_dump($t2);
@@ -16,6 +16,11 @@ $ob->get();
 
 echo '<br>';
 
-$ob = new Rest();
-$ob->parseQuery();
+$ob1 = new Rest();
+
+
+$request = $ob1->response();
+
+
 //var_dump($ob->getAllNews());
+var_dump($request->getMethod());
