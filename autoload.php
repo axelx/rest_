@@ -8,7 +8,7 @@ spl_autoload_register(function($name) {
 
 
 function autoLoader($name) {
-    require_once $name.'.php';
+    require_once 'classes/'.$name.'.php';
 }
 
 spl_autoload_register('autoLoader');
