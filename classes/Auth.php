@@ -14,7 +14,6 @@ class Auth extends Db
     {
         if (count($user) != 2){
             throw new Exception('Вы не авторизованы_');
-            return false;
         }
 
 
@@ -24,11 +23,6 @@ class Auth extends Db
         $sth->execute([':username'=> $user['user'],':password' =>$user['password']]);
         $res = $sth->fetch();
 
-//        var_dump($user);
-//
-//        var_dump($res);
-//
-//        die;
         if (!$res){
             throw new Exception('Вы не авторизованы_1');
         }

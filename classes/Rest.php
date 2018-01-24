@@ -28,7 +28,6 @@ class Rest
         $this->authInput = false;
 
         if ($this->methodQuery == 'GET'){
-//            var_dump("9898");
              return;
         }
 
@@ -45,9 +44,6 @@ class Rest
 
         }
 
-//        var_dump("999999");
-//        var_dump($this->authInput);
-//        var_dump("999999");
         return $this->authInput;
 
 
@@ -59,14 +55,8 @@ class Rest
 
     public function response(){
 
-//        var_dump($this->methodQuery);
-//        var_dump(file_get_contents('php://input'));
-
-
         $this->parsePhpInput();
 
-
-//        var_dump($this->dataQuery);
         return new $this->route($this->methodQuery,$this->dataQuery,$this->dataInput);
     }
 
@@ -77,12 +67,8 @@ class Rest
      */
     public function parseQuery()
     {
-//        $query = $_SERVER["REQUEST_URI"];
 
 
-
-
-// Разбираем url
         $url = $_SERVER["REQUEST_URI"] ?? '';
 
 
@@ -99,24 +85,7 @@ class Rest
 
 
 
-//
-//        var_dump($this->methodQuery);
-//        var_dump($this->route);
-//        var_dump($this->dataQuery);
-//
-//var_dump('0000000000000000000');
-
-
-
-
-
     }
-
-
-
-
-
-
 
 
 
@@ -125,8 +94,6 @@ class Rest
      */
     public function setMethod()
     {
-
-
         $this->methodQuery = $_SERVER['REQUEST_METHOD'];
     }
 

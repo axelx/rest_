@@ -5,7 +5,7 @@ curl -X GET http://web-rest4/news/3 -i
 
 curl -X POST http://web-rest4/news -i
 curl -X POST http://web-rest4/news --data {"title":"\u041d\u043e\u0432\u043e\u0441\u0442\u044c add01","content":"\u041a\u043e\u043d\u0442\u0435\u043d\u0442 \u043d\u043e\u0432\u043e\u0441\u0442\u0438 add01"} -i
-curl -X POST http://web-rest4/news --data {"title":"News add01","content":"News_content add01"} -i
+curl -X POST http://web-rest4/news --data {"title":"News add --","content":"News_content add01"} -i
 
 
 curl -X PUT http://web-rest4/news/11 --data {"title":"News update11","content":"News_content add01"} -i
@@ -23,5 +23,10 @@ curl -X DELETE http://web-rest4/news/6 -i
 {"title":"News add121201","content":"News_content add01"}
 
 {"auth":{"user":"user1","password":"pass1"},"data":{"title":"News add01","content":"content add01"}}
+
+
+
+curl -X POST http://web-rest4/news --data {"auth":{"user":"user1","password":"pass1"},"data":{"title":"News add__23-25","content":"content add__23-25"}} -i
+
 
 

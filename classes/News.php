@@ -71,8 +71,6 @@ class News extends Db implements NewsCrud
             throw new Exception('Один из обязательных параметров не заполнен');
         }
 
-//var_dump("333");
-//var_dump($data);
 
         $sql = 'INSERT INTO `news` (`title`, `content`) VALUES (:title, :content)';
 
@@ -91,7 +89,6 @@ class News extends Db implements NewsCrud
         if (empty($data['title']) && empty($data['content'])){
             throw new Exception('Нет обязательных параметров для обновления');
         }
-//        var_dump($id[0]);
 
         $set = '';
         foreach ($data as $k => $datum) {
@@ -102,7 +99,6 @@ class News extends Db implements NewsCrud
 
 
         $sql = "UPDATE `news`  SET $set WHERE id = :id";
-//        var_dump($sql);
 
 
         $sth = $this->db->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
@@ -117,14 +113,9 @@ class News extends Db implements NewsCrud
 
     public function deleteNews($id){
 
-//        if (empty($data['title']) && empty($data['content'])){
-//            throw new Exception('Нет обязательных параметров для обновления');
-//        }
-        var_dump($id[0]);
 
 
         $sql = "DELETE FROM `news` WHERE id = :id";
-        var_dump($sql);
 
 
         $sth = $this->db->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
@@ -141,44 +132,33 @@ class News extends Db implements NewsCrud
 
     public function selectMethod()
     {
-//        var_dump('00');
-//        var_dump($this->methodQuery);
-//        var_dump($this->dataQuery);
-//        var_dump($this->phpInput);
+
 
         if ($this->methodQuery === 'GET' && empty($this->dataQuery)){
-//            var_dump('sdf');die;
             return $this->getAllNews();
         }
+
         if ($this->methodQuery === 'GET' && count($this->dataQuery) === 1){
             return $this->getOneNews($this->dataQuery[0]);
-
         }
-//
+
         if ($this->methodQuery === 'POST' && empty($this->dataQuery) && !empty($this->phpInput)) {
-//            var_dump('11');
             return $this->addNews($this->phpInput);
-
         }
-//
+
         if ($this->methodQuery === 'PUT' && count($this->dataQuery) === 1  && !empty($this->phpInput)) {
-//            var_dump('11');
-
             return $this->updateNews($this->dataQuery, $this->phpInput);
-
         }
+
         if ($this->methodQuery === 'PATCH' && count($this->dataQuery) === 1  && !empty($this->phpInput)) {
-//            var_dump('11');
-
             return $this->updateNews($this->dataQuery, $this->phpInput);
-
         }
+
         if ($this->methodQuery === 'DELETE' && count($this->dataQuery) === 1) {
-
             return $this->deleteNews($this->dataQuery);
-
-
         }
+
+
     }
 
 
