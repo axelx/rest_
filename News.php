@@ -20,11 +20,9 @@ class News extends Db implements NewsCrud
         $this->methodQuery = $method;
         $this->dataQuery = $dataQ;
 
-        if ($dataInput){
-            $this->phpInput = json_decode($dataInput,tue);
-        }else{
-            $this->phpInput = $dataInput;
-        }
+        $this->phpInput = $dataInput;
+
+
 
     }
 
@@ -37,7 +35,7 @@ class News extends Db implements NewsCrud
     public function getAllNews(){
 
 
-        $sql = 'SELECT * FROM news';
+        $sql = 'SELECT * FROM news AS n ';
         $sth = $this->db->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 
         $sth->execute();
@@ -73,7 +71,8 @@ class News extends Db implements NewsCrud
             throw new Exception('Один из обязательных параметров не заполнен');
         }
 
-
+//var_dump("333");
+//var_dump($data);
 
         $sql = 'INSERT INTO `news` (`title`, `content`) VALUES (:title, :content)';
 
@@ -142,7 +141,9 @@ class News extends Db implements NewsCrud
 
     public function selectMethod()
     {
-//        var_dump('11');
+//        var_dump('00');
+//        var_dump($this->methodQuery);
+//        var_dump($this->dataQuery);
 //        var_dump($this->phpInput);
 
         if ($this->methodQuery === 'GET' && empty($this->dataQuery)){
@@ -155,6 +156,7 @@ class News extends Db implements NewsCrud
         }
 //
         if ($this->methodQuery === 'POST' && empty($this->dataQuery) && !empty($this->phpInput)) {
+//            var_dump('11');
             return $this->addNews($this->phpInput);
 
         }

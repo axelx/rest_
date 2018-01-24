@@ -7,7 +7,8 @@ class Rest
     public $methodQuery;
     public $route;
     public $dataQuery;
-    public $phpInput;
+    public $dataInput;
+    public $authInput;
 
 
     /**
@@ -20,24 +21,53 @@ class Rest
         $this->parseQuery();
     }
 
+    public function parsePhpInput()
+    {
+
+        $this->dataInput = false;
+        $this->authInput = false;
+
+        if ($this->methodQuery == 'GET'){
+//            var_dump("9898");
+             return;
+        }
+
+        $phpInput = file_get_contents('php://input');
+        $phpInput = json_decode($phpInput,true);
+
+        if (!isset($phpInput['auth']) || !isset($phpInput['data'])) {
+            return;
+        }else{
+            $auth = new Auth();
+            $this->authInput = $auth->checkAuth($phpInput['auth']);
+            $this->dataInput = $phpInput['data'];
+
+
+        }
+
+//        var_dump("999999");
+//        var_dump($this->authInput);
+//        var_dump("999999");
+        return $this->authInput;
+
+
+    }
+
 
 
 
 
     public function response(){
 
-        var_dump($_POST);
+//        var_dump($this->methodQuery);
 //        var_dump(file_get_contents('php://input'));
 
-        if ($this->methodQuery != 'GET'){
-//            var_dump("9898");
-            $this->phpInput = file_get_contents('php://input');
 
-        }
+        $this->parsePhpInput();
 
-//        var_dump($this->phpInput);
+
 //        var_dump($this->dataQuery);
-        return new $this->route($this->methodQuery,$this->dataQuery,$this->phpInput);
+        return new $this->route($this->methodQuery,$this->dataQuery,$this->dataInput);
     }
 
 

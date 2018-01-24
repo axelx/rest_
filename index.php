@@ -32,7 +32,24 @@ $addNews = [
   'content' => 'Контент новости add01',
 ];
 
-$json1 = json_encode($addNews);
+
+$requestArr = [
+    'auth' =>[
+        'user'=> 'user1',
+        'password'=> 'pass1',
+    ],
+    'data' =>[
+        'title' => 'News add01',
+        'content' => 'content add01',
+
+    ]
+];
+
+$json1 = json_encode($requestArr);
 
 var_dump($json1);
-var_dump(json_decode($json1,true));*/
+var_dump(json_decode($json1,true));
+*/
+
+
+/**/
